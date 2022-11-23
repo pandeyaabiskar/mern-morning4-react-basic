@@ -1,0 +1,10 @@
+.btn {
+    background-color: orange;
+    padding: 5px 10px;
+    border: none;
+    margin: 2;
+}
+
+.btn-red {
+    background-color: red;
+}
