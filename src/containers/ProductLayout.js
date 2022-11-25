@@ -26,19 +26,24 @@ function ProductLayout() {
     <section className="products">
       {isLoading && <h1>Loading...</h1>}
       {!isLoading && isError && <h1>Sorry Some Error Occured...</h1>}
-      {!isLoading && !isError && data && (
-        <div className="product-card">
-          <a href="/products/{{id}}">
-            <div className="product-image">
-              <img src="#" />
+      {!isLoading &&
+        !isError &&
+        data &&
+        data.map((productData) => {
+          return (
+            <div className="product-card">
+              <a href={"/products/" + productData._id}>
+                <div className="product-image">
+                  <img src={productData.image} />
+                </div>
+                <div className="product-info">
+                  <h5>{productData.title}</h5>
+                  <h6>${productData.price}</h6>
+                </div>
+              </a>
             </div>
-            <div className="product-info">
-              <h5></h5>
-              <h6>$</h6>
-            </div>
-          </a>
-        </div>
-      )}
+          );
+        })}
     </section>
   );
 }
