@@ -1,28 +1,11 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+
 import './productlayout.css';
 import { Link } from 'react-router-dom';
+import{useFetch} from '../utils/hooks'
 
 function ProductLayout() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data: responseData } = await axios.get(
-          "http://localhost:4000/api/products"
-        );
-        setData(responseData);
-        setIsLoading(false);
-      } catch (err) {
-        setIsError(true);
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const {data, isLoading, isError} = useFetch('http://localhost:4000/api/products')
+  
 
   return (
     <section className="products">
