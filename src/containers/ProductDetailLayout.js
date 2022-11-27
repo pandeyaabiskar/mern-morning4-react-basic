@@ -96,13 +96,14 @@ function ProductDetailLayout() {
               </ul>
             </div>
             <div className="description">
-              <h3>BENEFITS</h3>
+              <h3>DESCRIPTION</h3>
               <ul>
-                <li>Apples are nutricious</li>
-                <li>Apples may be good for weight loss</li>
-                <li>Apples may be good for bone health</li>
-                <li>They're linked to a lowest risk of diabetes</li>
+                <li>{data.description}</li>
               </ul>
+            </div>
+            <div className="description">
+              <h3>RATING</h3>
+              {data.rating.rate}
             </div>
             <button className="buy--btn">ADD TO CART</button>
           </div>
