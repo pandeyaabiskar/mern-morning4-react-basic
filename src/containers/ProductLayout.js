@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import './productlayout.css';
+import { Link } from 'react-router-dom';
 
 function ProductLayout() {
   const [data, setData] = useState([]);
@@ -29,10 +31,10 @@ function ProductLayout() {
       {!isLoading &&
         !isError &&
         data &&
-        data.map((productData) => {
+        data.map((productData, index) => {
           return (
-            <div className="product-card">
-              <a href={"/products/" + productData._id}>
+            <div className="product-card" key={index}>
+              <Link to={"/products/" + productData._id}>
                 <div className="product-image">
                   <img src={productData.image} />
                 </div>
@@ -40,7 +42,7 @@ function ProductLayout() {
                   <h5>{productData.title}</h5>
                   <h6>${productData.price}</h6>
                 </div>
-              </a>
+              </Link>
             </div>
           );
         })}
