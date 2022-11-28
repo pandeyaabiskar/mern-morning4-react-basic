@@ -1,11 +1,21 @@
 
 import './productlayout.css';
 import { Link } from 'react-router-dom';
-import{useFetch} from '../utils/hooks'
+import { useFetch } from '../utils/hooks'
+
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from '../store/slices/productSlice';
+import {useEffect} from 'react'
 
 function ProductLayout() {
-  const {data, isLoading, isError} = useFetch('http://localhost:4000/api/products')
+  // const {data, isLoading, isError} = useFetch('http://localhost:4000/api/products')
+  //Using redux to fetch data
+  const dispatch = useDispatch();
+  const { data, isLoading, isError } = useSelector(state => state.product)
   
+  useEffect(() => {
+    dispatch(fetchData())
+  }, []);
 
   return (
     <section className="products">
