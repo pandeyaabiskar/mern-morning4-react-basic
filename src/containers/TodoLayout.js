@@ -1,5 +1,7 @@
 import React from "react";
-import Button from "../components/Button";
+// import Button from "../components/Button";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
 function TodoLayout() {
@@ -10,11 +12,11 @@ function TodoLayout() {
     //Appending new todo to previous array of todos
     setTodoList([...todoList, todoText]);
     setTodoText("");
-    };
-    
-    const handleDelete = (todo) => {
-        setTodoList(todoList.filter((listtodo) => listtodo !== todo))
-    }
+  };
+
+  const handleDelete = (todo) => {
+    setTodoList(todoList.filter((listtodo) => listtodo !== todo));
+  };
 
   const handleInput = (e) => {
     setTodoText(e.target.value);
@@ -22,13 +24,31 @@ function TodoLayout() {
 
   return (
     <div>
-      <input type="text" value={todoText} onChange={handleInput} />
-      <Button label="Add Todo" clickHandler={handleClick} />
+      {/* <input type="text" value={todoText} onChange={handleInput} /> */}
+      <TextField
+        id="outlined-name"
+        label="Name"
+        size="small"
+        value={todoText}
+        onChange={handleInput}
+        sx={{background: "white"}}
+      />
+
+      <Button variant="contained" onClick={handleClick}>
+        Add Todo
+      </Button>
+
+      {/* <Button label="Add Todo" clickHandler={handleClick} /> */}
       <ol>
         {todoList.map((todo, index) => {
-            return (
-                <li key={index}>{todo} <Button label="Delete" clickHandler={() => handleDelete(todo)} /></li>
-            );
+          return (
+            <li key={index}>
+              {todo}{" "}
+              <Button variant="contained" onClick={() => handleDelete(todo)} color="error">
+                Delete
+              </Button>
+            </li>
+          );
         })}
       </ol>
     </div>

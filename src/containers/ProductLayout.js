@@ -1,21 +1,28 @@
+import "./productlayout.css";
+import { Link } from "react-router-dom";
+import { useFetch } from "../utils/hooks";
 
-import './productlayout.css';
-import { Link } from 'react-router-dom';
-import { useFetch } from '../utils/hooks'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../store/slices/productSlice";
+import { useEffect } from "react";
 
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../store/slices/productSlice';
-import {useEffect} from 'react'
+//Context
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
 
 function ProductLayout() {
   // const {data, isLoading, isError} = useFetch('http://localhost:4000/api/products')
+
   //Using redux to fetch data
-  const dispatch = useDispatch();
-  const { data, isLoading, isError } = useSelector(state => state.product)
-  
-  useEffect(() => {
-    dispatch(fetchData())
-  }, []);
+  // const dispatch = useDispatch();
+  // const { data, isLoading, isError } = useSelector(state => state.product)
+
+  // useEffect(() => {
+  //   dispatch(fetchData())
+  // }, []);
+
+  //Using context
+  const { data, isLoading, isError } = useContext(ProductContext);
 
   return (
     <section className="products">
